@@ -7,9 +7,7 @@ public class PriorityList<T> where T : IPriority
     private List<T> list;
     
     public PriorityList() : this(new List<T>())
-    {
-        
-    }
+    { }
 
     public PriorityList(List<T> list)
     {
@@ -20,7 +18,7 @@ public class PriorityList<T> where T : IPriority
     {
         return list;
     }
-    
+
     public void Add(T obj)
     {
         int index = IndexOf(obj);
