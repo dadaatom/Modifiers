@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,15 +22,14 @@ public class BoundedValueModifier : Modifier
     
     public override float Compute(float input)
     {
-
-        if (Bound == Bound.Upper && input > Value)
+        if (Bound == Bound.Upper)
         {
-            return Value;
+            return Math.Min(Value, input);
         }
         
-        if (Bound == Bound.Lower && input < Value)
+        if (Bound == Bound.Lower)
         {
-            return Value;
+            return Math.Max(Value, input);
         }
         
         return input;

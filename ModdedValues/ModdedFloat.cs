@@ -7,16 +7,13 @@ public class ModdedFloat : ModdedValue
 {
     public float value;
     
-    public ModdedFloat() : this(0)
-    { }
+    public ModdedFloat() : this(0) { }
 
-    public ModdedFloat(float value) : this(value, new PriorityList<Modifier>())
-    { }
+    public ModdedFloat(float value) : this(value, new PriorityList<Modifier>()) { }
 
     public ModdedFloat(float value, PriorityList<Modifier> modifiers) : base(modifiers)
     {
         this.value = value;
-        //this.modifiers = modifiers;
     }
     
     public float Get()
