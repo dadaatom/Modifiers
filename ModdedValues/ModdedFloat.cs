@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ModdedFloat : ModdedValue
 {
-    public float value;
+    public float Value;
     
     public ModdedFloat() : this(0) { }
 
@@ -13,12 +13,12 @@ public class ModdedFloat : ModdedValue
 
     public ModdedFloat(float value, PriorityList<Modifier> modifiers) : base(modifiers)
     {
-        this.value = value;
+        this.Value = value;
     }
     
     public float Get()
     {
-        float modifiedValue = value;
+        float modifiedValue = Value;
         foreach (Modifier modifier in modifiers.GetList())
         {
             modifiedValue = modifier.Compute(modifiedValue);
@@ -26,10 +26,40 @@ public class ModdedFloat : ModdedValue
 
         return modifiedValue;
     }
-    
+
+    public void Set(float value)
+    {
+        Value = value;
+    }
+
     public static implicit operator float(ModdedFloat moddedFloat)
     {
         return moddedFloat.Get();
+    }
+
+    public static ModdedFloat operator +(ModdedFloat moddedFloat, float value)
+    {
+        return new ModdedFloat(moddedFloat.Value + value, moddedFloat.modifiers);
+    }
+    
+    public static ModdedFloat operator -(ModdedFloat moddedFloat, float value)
+    {
+        return new ModdedFloat(moddedFloat.Value - value, moddedFloat.modifiers);
+    }
+    
+    public static ModdedFloat operator *(ModdedFloat moddedFloat, float value)
+    {
+        return new ModdedFloat(moddedFloat.Value * value, moddedFloat.modifiers);
+    }
+    
+    public static ModdedFloat operator /(ModdedFloat moddedFloat, float value)
+    {
+        return new ModdedFloat(moddedFloat.Value / value, moddedFloat.modifiers);
+    }
+    
+    public static ModdedFloat operator %(ModdedFloat moddedFloat, float value)
+    {
+        return new ModdedFloat(moddedFloat.Value % value, moddedFloat.modifiers);
     }
 }
 
