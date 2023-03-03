@@ -21,3 +21,10 @@ Let's now add a multiplier to `playerSpeed` to be computed before the upper boun
 MultiplicationModifier mod = new MultiplicationModifier(2);
 playerSpeed.modifiers.Add(mod);
 ```
+The base value of playerSpeed can be changed either directly or by via the overwritten addition operator.
+```csharp
+// Both of these examples below add 5 to the pre-modded value.
+playerSpeed.Value += 5;
+playerSpeed += 5;
+```
+
