@@ -1,4 +1,4 @@
-﻿namespace Modifiers.Modifiers.ModdedValues
+﻿namespace Modifiers
 {
     public enum CastType
     {

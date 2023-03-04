@@ -3,63 +3,69 @@ using System.Collections.Generic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
-public class ModdedFloat : ModdedValue
+namespace Modifiers
 {
-    public float Value;
-    
-    public ModdedFloat() : this(0) { }
-
-    public ModdedFloat(float value) : this(value, new PriorityList<Modifier>()) { }
-
-    public ModdedFloat(float value, PriorityList<Modifier> modifiers) : base(modifiers)
+    public class ModdedFloat : ModdedValue
     {
-        this.Value = value;
-    }
-    
-    public float Get()
-    {
-        float modifiedValue = Value;
-        foreach (Modifier modifier in modifiers.GetList())
+        public float Value;
+
+        public ModdedFloat() : this(0)
         {
-            modifiedValue = modifier.Compute(modifiedValue);
         }
 
-        return modifiedValue;
-    }
+        public ModdedFloat(float value) : this(value, new PriorityList<Modifier>())
+        {
+        }
 
-    public void Set(float value)
-    {
-        Value = value;
-    }
+        public ModdedFloat(float value, PriorityList<Modifier> modifiers) : base(modifiers)
+        {
+            this.Value = value;
+        }
 
-    public static implicit operator float(ModdedFloat moddedFloat)
-    {
-        return moddedFloat.Get();
-    }
+        public float Get()
+        {
+            float modifiedValue = Value;
+            foreach (Modifier modifier in modifiers.GetList())
+            {
+                modifiedValue = modifier.Compute(modifiedValue);
+            }
 
-    public static ModdedFloat operator +(ModdedFloat moddedFloat, float value)
-    {
-        return new ModdedFloat(moddedFloat.Value + value, moddedFloat.modifiers);
-    }
-    
-    public static ModdedFloat operator -(ModdedFloat moddedFloat, float value)
-    {
-        return new ModdedFloat(moddedFloat.Value - value, moddedFloat.modifiers);
-    }
-    
-    public static ModdedFloat operator *(ModdedFloat moddedFloat, float value)
-    {
-        return new ModdedFloat(moddedFloat.Value * value, moddedFloat.modifiers);
-    }
-    
-    public static ModdedFloat operator /(ModdedFloat moddedFloat, float value)
-    {
-        return new ModdedFloat(moddedFloat.Value / value, moddedFloat.modifiers);
-    }
-    
-    public static ModdedFloat operator %(ModdedFloat moddedFloat, float value)
-    {
-        return new ModdedFloat(moddedFloat.Value % value, moddedFloat.modifiers);
+            return modifiedValue;
+        }
+
+        public void Set(float value)
+        {
+            Value = value;
+        }
+
+        public static implicit operator float(ModdedFloat moddedFloat)
+        {
+            return moddedFloat.Get();
+        }
+
+        public static ModdedFloat operator +(ModdedFloat moddedFloat, float value)
+        {
+            return new ModdedFloat(moddedFloat.Value + value, moddedFloat.modifiers);
+        }
+
+        public static ModdedFloat operator -(ModdedFloat moddedFloat, float value)
+        {
+            return new ModdedFloat(moddedFloat.Value - value, moddedFloat.modifiers);
+        }
+
+        public static ModdedFloat operator *(ModdedFloat moddedFloat, float value)
+        {
+            return new ModdedFloat(moddedFloat.Value * value, moddedFloat.modifiers);
+        }
+
+        public static ModdedFloat operator /(ModdedFloat moddedFloat, float value)
+        {
+            return new ModdedFloat(moddedFloat.Value / value, moddedFloat.modifiers);
+        }
+
+        public static ModdedFloat operator %(ModdedFloat moddedFloat, float value)
+        {
+            return new ModdedFloat(moddedFloat.Value % value, moddedFloat.modifiers);
+        }
     }
 }
-

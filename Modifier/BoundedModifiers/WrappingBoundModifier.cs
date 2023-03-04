@@ -1,27 +1,27 @@
-﻿
-using System;
-
-public class WrappingBoundModifier : BoundedValueModifier
+﻿namespace Modifiers
 {
-    public float WrapValue { get; }
-
-    public WrappingBoundModifier(Bound bound, float value, float wrapValue) : base(bound, value)
+    public class WrappingBoundModifier : BoundedValueModifier
     {
-        WrapValue = wrapValue;
-    }
+        public float WrapValue { get; }
 
-    public override float Compute(float input)
-    {
-        if (Bound == Bound.Upper && input > Value)
+        public WrappingBoundModifier(Bound bound, float value, float wrapValue) : base(bound, value)
         {
-            return WrapValue;
+            WrapValue = wrapValue;
         }
-        
-        if (Bound == Bound.Lower && input < Value)
+
+        public override float Compute(float input)
         {
-            return WrapValue;
+            if (Bound == Bound.Upper && input > Value)
+            {
+                return WrapValue;
+            }
+
+            if (Bound == Bound.Lower && input < Value)
+            {
+                return WrapValue;
+            }
+
+            return input;
         }
-        
-        return input;
     }
 }

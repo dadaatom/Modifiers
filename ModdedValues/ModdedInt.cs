@@ -1,74 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
-using Modifiers.Modifiers.ModdedValues;
-using UnityEngine;
-
-public class ModdedInt : ModdedValue
+namespace Modifiers
 {
-    public int Value;
-    public CastType CastType;
-    
-    public ModdedInt() : this(0) { }
-
-    public ModdedInt(int value, CastType castType = CastType.PostComputations) : this(value, new PriorityList<Modifier>(), castType) { }
-
-    public ModdedInt(int value, PriorityList<Modifier> modifiers, CastType castType = CastType.PostComputations) : base(modifiers)
+    public class ModdedInt : ModdedValue
     {
-        Value = value;
-        CastType = castType;
-    }
-    
-    public int Get()
-    {
-        float modifiedValue = Value;
-        foreach (Modifier modifier in modifiers.GetList())
+        public int Value;
+        public CastType CastType;
+
+        public ModdedInt() : this(0)
         {
-            if (CastType == CastType.EachComputation)
-            {
-                modifiedValue = (int)modifier.Compute(modifiedValue);
-            }
-            else
-            {
-                modifiedValue = modifier.Compute(modifiedValue);
-            }
         }
 
-        return (int)modifiedValue;
-        
-    }
+        public ModdedInt(int value, CastType castType = CastType.PostComputations) : this(value,
+            new PriorityList<Modifier>(), castType) { }
 
-    public void Set(int value)
-    {
-        Value = value;
-    }
+        public ModdedInt(int value, PriorityList<Modifier> modifiers, CastType castType = CastType.PostComputations) :
+            base(modifiers)
+        {
+            Value = value;
+            CastType = castType;
+        }
 
-    public static implicit operator int(ModdedInt moddedInt)
-    {
-        return moddedInt.Get();
-    }
+        public int Get()
+        {
+            float modifiedValue = Value;
+            foreach (Modifier modifier in modifiers.GetList())
+            {
+                if (CastType == CastType.EachComputation)
+                {
+                    modifiedValue = (int) modifier.Compute(modifiedValue);
+                }
+                else
+                {
+                    modifiedValue = modifier.Compute(modifiedValue);
+                }
+            }
 
-    public static ModdedInt operator +(ModdedInt moddedInt, int value)
-    {
-        return new ModdedInt(moddedInt.Value + value, moddedInt.modifiers);
-    }
-    
-    public static ModdedInt operator -(ModdedInt moddedInt, int value)
-    {
-        return new ModdedInt(moddedInt.Value - value, moddedInt.modifiers);
-    }
-    
-    public static ModdedInt operator *(ModdedInt moddedInt, int value)
-    {
-        return new ModdedInt(moddedInt.Value * value, moddedInt.modifiers);
-    }
-    
-    public static ModdedInt operator /(ModdedInt moddedInt, int value)
-    {
-        return new ModdedInt(moddedInt.Value / value, moddedInt.modifiers);
-    }
-    
-    public static ModdedInt operator %(ModdedInt moddedInt, int value)
-    {
-        return new ModdedInt(moddedInt.Value % value, moddedInt.modifiers);
+            return (int) modifiedValue;
+
+        }
+
+        public void Set(int value)
+        {
+            Value = value;
+        }
+
+        public static implicit operator int(ModdedInt moddedInt)
+        {
+            return moddedInt.Get();
+        }
+
+        public static ModdedInt operator +(ModdedInt moddedInt, int value)
+        {
+            return new ModdedInt(moddedInt.Value + value, moddedInt.modifiers);
+        }
+
+        public static ModdedInt operator -(ModdedInt moddedInt, int value)
+        {
+            return new ModdedInt(moddedInt.Value - value, moddedInt.modifiers);
+        }
+
+        public static ModdedInt operator *(ModdedInt moddedInt, int value)
+        {
+            return new ModdedInt(moddedInt.Value * value, moddedInt.modifiers);
+        }
+
+        public static ModdedInt operator /(ModdedInt moddedInt, int value)
+        {
+            return new ModdedInt(moddedInt.Value / value, moddedInt.modifiers);
+        }
+
+        public static ModdedInt operator %(ModdedInt moddedInt, int value)
+        {
+            return new ModdedInt(moddedInt.Value % value, moddedInt.modifiers);
+        }
     }
 }

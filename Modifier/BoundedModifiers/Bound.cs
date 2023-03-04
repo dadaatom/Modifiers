@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum Bound
+namespace Modifiers
 {
-    Upper,
-    Lower
+    public enum Bound
+    {
+        Upper,
+        Lower
+    }
 }
