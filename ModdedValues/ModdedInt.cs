@@ -1,30 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Modifiers.Modifiers.ModdedValues;
 using UnityEngine;
 
 public class ModdedInt : ModdedValue
 {
     public int Value;
+    public CastType CastType;
     
     public ModdedInt() : this(0) { }
 
-    public ModdedInt(int value) : this(value, new PriorityList<Modifier>()) { }
+    public ModdedInt(int value, CastType castType = CastType.PostComputations) : this(value, new PriorityList<Modifier>(), castType) { }
 
-    public ModdedInt(int value, PriorityList<Modifier> modifiers) : base(modifiers)
+    public ModdedInt(int value, PriorityList<Modifier> modifiers, CastType castType = CastType.PostComputations) : base(modifiers)
     {
-        this.Value = value;
-        //this.modifiers = modifiers;
+        Value = value;
+        CastType = castType;
     }
     
     public int Get()
     {
-        int modifiedValue = Value;
+        float modifiedValue = Value;
         foreach (Modifier modifier in modifiers.GetList())
         {
-            modifiedValue = (int)modifier.Compute(modifiedValue);
+            if (CastType == CastType.EachComputation)
+            {
+                modifiedValue = (int)modifier.Compute(modifiedValue);
+            }
+            else
+            {
+                modifiedValue = modifier.Compute(modifiedValue);
+            }
         }
 
-        return modifiedValue;
+        return (int)modifiedValue;
+        
     }
 
     public void Set(int value)
