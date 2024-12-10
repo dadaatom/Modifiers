@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
-using UnityEngine;
-
-namespace Modifiers
+﻿namespace Modifiers
 {
+    [System.Serializable]
     public class ModdedFloat : ModdedValue
     {
         public float Value;

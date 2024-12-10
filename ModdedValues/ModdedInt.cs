@@ -1,5 +1,6 @@
 namespace Modifiers
 {
+    [System.Serializable]
     public class ModdedInt : ModdedValue
     {
         public int Value;
