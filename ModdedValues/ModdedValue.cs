@@ -1,5 +1,8 @@
+using System;
+
 namespace Modifiers
 {
+    [Serializable]
     public abstract class ModdedValue
     {
         public PriorityList<Modifier> modifiers;

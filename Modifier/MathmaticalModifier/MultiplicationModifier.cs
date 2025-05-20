@@ -4,6 +4,11 @@
     {
         public float Value { get; }
 
+        
+        public MultiplicationModifier() : this("", 0, 0)
+        {
+        }
+        
         public MultiplicationModifier(float value) : this("", 0, value)
         {
         }

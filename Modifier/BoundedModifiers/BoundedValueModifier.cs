@@ -7,6 +7,10 @@ namespace Modifiers
         public Bound Bound { get; }
         public float Value { get; }
 
+        public BoundedValueModifier() : this("", 0, Bound.Upper, 0)
+        {
+        }
+        
         public BoundedValueModifier(float value) : this("", 0, Bound.Upper, value)
         {
         }

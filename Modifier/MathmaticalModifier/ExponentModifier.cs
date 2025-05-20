@@ -6,6 +6,10 @@ namespace Modifiers
     {
         public float Value { get; }
 
+        public ExponentModifier() : this("", 0, 0)
+        {
+        }
+        
         public ExponentModifier(float value) : this("", 0, value)
         {
         }

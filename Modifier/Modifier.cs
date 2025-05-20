@@ -1,5 +1,8 @@
-﻿namespace Modifiers
+﻿using System;
+
+namespace Modifiers
 {
+    [Serializable]
     public abstract class Modifier : IPriority
     {
         public string Label { get; }

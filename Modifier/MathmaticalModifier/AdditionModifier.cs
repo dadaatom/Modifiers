@@ -4,6 +4,10 @@ namespace Modifiers
     {
         public float Value { get; }
 
+        public AdditionModifier() : this("", 0, 0)
+        {
+        }
+        
         public AdditionModifier(float value) : this("", 0, value)
         {
         }
