@@ -23,7 +23,7 @@ namespace Modifiers
         public float Get()
         {
             float modifiedValue = Value;
-            foreach (Modifier modifier in modifiers.GetList())
+            foreach (Modifier modifier in Modifiers.GetList())
             {
                 modifiedValue = modifier.Compute(modifiedValue);
             }
@@ -43,27 +43,27 @@ namespace Modifiers
 
         public static ModdedFloat operator +(ModdedFloat moddedFloat, float value)
         {
-            return new ModdedFloat(moddedFloat.Value + value, moddedFloat.modifiers);
+            return new ModdedFloat(moddedFloat.Value + value, moddedFloat.Modifiers);
         }
 
         public static ModdedFloat operator -(ModdedFloat moddedFloat, float value)
         {
-            return new ModdedFloat(moddedFloat.Value - value, moddedFloat.modifiers);
+            return new ModdedFloat(moddedFloat.Value - value, moddedFloat.Modifiers);
         }
 
         public static ModdedFloat operator *(ModdedFloat moddedFloat, float value)
         {
-            return new ModdedFloat(moddedFloat.Value * value, moddedFloat.modifiers);
+            return new ModdedFloat(moddedFloat.Value * value, moddedFloat.Modifiers);
         }
 
         public static ModdedFloat operator /(ModdedFloat moddedFloat, float value)
         {
-            return new ModdedFloat(moddedFloat.Value / value, moddedFloat.modifiers);
+            return new ModdedFloat(moddedFloat.Value / value, moddedFloat.Modifiers);
         }
 
         public static ModdedFloat operator %(ModdedFloat moddedFloat, float value)
         {
-            return new ModdedFloat(moddedFloat.Value % value, moddedFloat.modifiers);
+            return new ModdedFloat(moddedFloat.Value % value, moddedFloat.Modifiers);
         }
     }
 }

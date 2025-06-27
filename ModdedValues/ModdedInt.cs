@@ -25,7 +25,7 @@ namespace Modifiers
         public int Get()
         {
             float modifiedValue = Value;
-            foreach (Modifier modifier in modifiers.GetList())
+            foreach (Modifier modifier in Modifiers.GetList())
             {
                 if (CastType == CastType.EachComputation)
                 {
@@ -53,27 +53,27 @@ namespace Modifiers
 
         public static ModdedInt operator +(ModdedInt moddedInt, int value)
         {
-            return new ModdedInt(moddedInt.Value + value, moddedInt.modifiers);
+            return new ModdedInt(moddedInt.Value + value, moddedInt.Modifiers);
         }
 
         public static ModdedInt operator -(ModdedInt moddedInt, int value)
         {
-            return new ModdedInt(moddedInt.Value - value, moddedInt.modifiers);
+            return new ModdedInt(moddedInt.Value - value, moddedInt.Modifiers);
         }
 
         public static ModdedInt operator *(ModdedInt moddedInt, int value)
         {
-            return new ModdedInt(moddedInt.Value * value, moddedInt.modifiers);
+            return new ModdedInt(moddedInt.Value * value, moddedInt.Modifiers);
         }
 
         public static ModdedInt operator /(ModdedInt moddedInt, int value)
         {
-            return new ModdedInt(moddedInt.Value / value, moddedInt.modifiers);
+            return new ModdedInt(moddedInt.Value / value, moddedInt.Modifiers);
         }
 
         public static ModdedInt operator %(ModdedInt moddedInt, int value)
         {
-            return new ModdedInt(moddedInt.Value % value, moddedInt.modifiers);
+            return new ModdedInt(moddedInt.Value % value, moddedInt.Modifiers);
         }
     }
 }
